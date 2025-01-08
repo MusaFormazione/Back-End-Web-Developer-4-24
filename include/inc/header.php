@@ -1,6 +1,7 @@
 <?php require_once './inc/functions.php'; ?>
 <?php 
-$valori = include './inc/variables.php'; 
+$valori = require './inc/variables.php'; 
+// echo $variabileNonEsportata;//undefined variables
 echo $valori;
 ?>
 <!DOCTYPE html>
