@@ -1,6 +1,6 @@
-<?php require_once './inc/functions.php'; ?>
+<?php require_once __DIR__.'/functions.php'; ?>
 <?php 
-$valori = require './inc/variables.php'; 
+$valori = require __DIR__.'/variables.php'; 
 // echo $variabileNonEsportata;//undefined variables
 echo $valori;
 ?>

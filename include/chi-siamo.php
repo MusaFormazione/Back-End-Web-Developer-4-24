@@ -1,7 +1,7 @@
 <?php
 $ciao = 'Hello World!';
 ?> 
-<?php include './inc/header.php' ?>
+<?php include __DIR__.'/inc/header.php' ?>
 <?php
 echo $ciao;//L'output sarà Ciao mondo perché all'interno del file header incluso il suo valore viene modificato. 
 ?>
@@ -11,4 +11,4 @@ echo $ciao;//L'output sarà Ciao mondo perché all'interno del file header inclu
 </main>
     
 
-<?php include './inc/footer.php' ?>
+<?php include __DIR__.'/inc/footer.php' ?>

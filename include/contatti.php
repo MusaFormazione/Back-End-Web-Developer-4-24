@@ -1,6 +1,6 @@
 <?php 
 $title = 'Contatti';
-include './inc/header.php' ?>
+include __DIR__.'/inc/header.php' ?>
 
 <main>
     <h1>Contatti</h1>
@@ -8,4 +8,4 @@ include './inc/header.php' ?>
 </main>
     
 
-<?php include './inc/footer.php' ?>
+<?php include __DIR__.'/inc/footer.php' ?>
