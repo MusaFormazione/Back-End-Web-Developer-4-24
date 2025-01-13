@@ -59,4 +59,19 @@ echo "La pizza $gusto costa $prezzo €";
 
 // echo "La pizza $gustoPizza costa $prezzoPizza euro ma è in sconto a $prezzoScontato euro";
 
+//Destrutturazione con riferimento al valore originale
+$array = ['a','b','c'];
 
+echo '<pre>';
+print_r($array);
+echo '</pre>';
+
+[$primo, &$secondo, $terzo] = $array;
+
+$primo = "X";//Questo assegnamento modifica solo ed esclusivamente il valore della variabile primo. 
+$secondo = "Z";//Mentre in questo caso modifico il valore della variabile $secondo, e anche il valore nell'array dal quale è stato estrapolato 
+echo "Primo: $primo, secondo: $secondo, terzo: $terzo";
+
+echo '<pre>';
+print_r($array);
+echo '</pre>';
