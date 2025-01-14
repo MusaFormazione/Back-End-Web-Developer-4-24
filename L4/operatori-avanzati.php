@@ -47,18 +47,6 @@ $pizza = [
 
 echo "La pizza $gusto costa $prezzo €";
 
-
-//Destrutturazione con valore predefinito. 
-//da verificare
-// $pizza = [
-//     'gusto' => 'Margherita',
-//     'prezzo' => 5
-// ];
-
-// ['gusto' => $gustoPizza, 'prezzo' => $prezzoPizza, 'prezzoSconto' => $prezzoScontato ?? 4.5] = $pizza;
-
-// echo "La pizza $gustoPizza costa $prezzoPizza euro ma è in sconto a $prezzoScontato euro";
-
 //Destrutturazione con riferimento al valore originale
 $array = ['a','b','c'];
 
