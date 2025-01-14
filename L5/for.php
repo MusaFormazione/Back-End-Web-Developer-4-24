@@ -23,3 +23,16 @@ for($i = 0; $i <= 10; $i++){
 
     echo "Iterazione n°$i<br>";
 }
+
+echo '<hr>';
+
+//ciclare array con for e altri cicli con scopo generico
+//Avendo a disposizione solo degli indici generati in maniera automatica, non posso confor andare a ciclare un re associativo perché non dispongo delle chiavi testuali. 
+$pizze = ['Margherita','Diavola','Marinara','Capricciosa'];
+
+for($i = 0; $i < count($pizze); $i++){
+
+    $pizza = $pizze[$i];
+
+    echo $pizza.'<br>';
+}
