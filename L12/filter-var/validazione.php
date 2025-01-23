@@ -39,3 +39,10 @@ echo $result !== false ? "$result è valido" : "NON è valido: ";
 // var_dump($result);
 echo "<br>";
 
+//Filtrare numeri in un determinato range 
+$number = '10';
+$options = [
+    'options' => ["min_range" => 1, "max_range" => 100]
+];
+$result = filter_var($number, FILTER_VALIDATE_INT, $options);
+var_dump($result);
