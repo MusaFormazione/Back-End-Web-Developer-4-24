@@ -4,7 +4,9 @@ require_once './includes/connection.php';
 
 //Preparo la sessione inserendo la chiave logged_in con valore inizialmente impostato a false. 
 //Quando l'utente effettuerà il login, questo valore cambierà e verrà adoperato per nascondere o mostrare determinati contenuti 
-$_SESSION['logged_in'] = false;
+if(!isset($_POST['logged_in'])){
+    $_SESSION['logged_in'] = false;
+}
 
 
 class ResponseObject
