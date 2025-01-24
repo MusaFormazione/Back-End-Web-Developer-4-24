@@ -1,6 +1,6 @@
 <?php 
 include './parts/header.php';
-require_once './includes/connection.php';
+require_once './includes/auth-functions.php';
 ?>
 
 <main class="container">
