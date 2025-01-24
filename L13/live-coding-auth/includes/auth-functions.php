@@ -9,23 +9,24 @@ if(!isset($_SESSION['logged_in'])){
 }
 
 
-class ResponseObject
-{
+class ResponseObject{
     public readonly bool $success;
     public readonly string $message;
 
-    public function __construct(bool $success, ?string $message)
-    {
+    public function __construct(bool $success, ?string $message){
         $this->success = $success;
         $this->message = $message ?? '';
     }
 }
 
-function register(string $nome, string $email, string $password): ResponseObject
-{
+function register(string $nome, string $email, string $password, $role = 'customer'): ResponseObject{
 
     global $db;
-    $role = 'customer';//Il ruolo è definito statico per una questione di sicurezza
+
+    if(!isAdmin()){
+        //Solo un utente già registrato come Admin, potrà creare un'altro Admin, in caso contrario il ruolo viene settato a customer ignorando il parametro precedentemente definito
+        $role = 'customer';//Il ruolo è definito statico per una questione di sicurezza
+    }
 
     if (empty($nome) || empty($email) || empty($password))
         return new ResponseObject(false, 'Mancano alcuni campi');
@@ -60,8 +61,7 @@ function register(string $nome, string $email, string $password): ResponseObject
 
 }
 
-function login(string $email, string $password): ResponseObject
-{
+function login(string $email, string $password): ResponseObject{
 
     global $db;
 
@@ -98,15 +98,31 @@ function login(string $email, string $password): ResponseObject
     ];
     
 
-    header('Location: dashboard.php');
+    if(isAdmin()){
+        header('Location: admin-dashboard.php');
+    }
+
+    if(isCustomer()){
+        header('Location: dashboard.php');
+    }
     return new ResponseObject(true, null);
 }
 
-function isLoggedIn(){
+function isLoggedIn():bool{
     return $_SESSION['logged_in'];
 }
 
-function logout(){
+function isAdmin(): bool{
+    if(!isLoggedIn()) return false;
+    return $_SESSION['user']['role'] == 'admin';
+}
+
+function isCustomer(): bool{
+    if(!isLoggedIn()) return false;
+    return $_SESSION['user']['role'] == 'customer';
+}
+
+function logout(): void{
     session_unset();//rimuove tutti i dati in $_SESSION
     session_destroy();
     setcookie(session_name(),'',time() - 3600,'/');

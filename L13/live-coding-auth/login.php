@@ -1,6 +1,6 @@
 <?php 
 include './parts/header.php';
-require_once './includes/auth-functions.php';
+include './guards/isGuest.php';
 ?>
 
 <main class="container">

@@ -1,4 +1,7 @@
-<?php include './parts/header.php'?>
+<?php 
+include './parts/header.php';
+include './guards/isCustomer.php';
+?>
 
 <main class="container">
 

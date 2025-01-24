@@ -1,5 +1,6 @@
 <?php
 include './parts/header.php';
+include './guards/isGuest.php';
 ?>
 <main class="container">
 
