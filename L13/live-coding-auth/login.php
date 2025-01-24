@@ -5,8 +5,34 @@ require_once './includes/auth-functions.php';
 
 <main class="container">
 
+<h1>Login</h1>
+
+<?php if(isset($_GET['message'])):?>
+    <div class="alert alert-success">
+        <?=$_GET['message']?>
+    </div>
+<?php endif;?>
+
+<?php
+
+    if ($_SERVER['REQUEST_METHOD'] == 'POST'):
+
+        $availablePostValues = ['email', 'password'];
+        require_once './includes/checkPostFields.php';
+
+        $loginAttempt = login($email, $password);
+        if (!$loginAttempt->success): ?>
+
+            <div class="alert alert-danger">
+                <?=$loginAttempt->message ?>
+            </div>
+
+        <?php 
+        endif; 
+    endif; ?>
+
     
-    <form action="" method="">
+    <form method="POST">
         
         <label for="email">Inserisci la tua E-mail</label>
         <input type="email" id="email" required class="form-control" name="email">

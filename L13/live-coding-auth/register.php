@@ -1,9 +1,9 @@
 <?php
 include './parts/header.php';
-require_once './includes/connection.php';
 ?>
 <main class="container">
 
+<h1>Register</h1>
     <?php
 
     if ($_SERVER['REQUEST_METHOD'] == 'POST'):
@@ -15,10 +15,11 @@ require_once './includes/connection.php';
         if (!$registerAttempt->success): ?>
 
             <div class="alert alert-danger">
-                <?php $registerAttempt->message ?>
+                <?=$registerAttempt->message ?>
             </div>
 
-        <?php endif; 
+        <?php 
+        endif; 
     endif; ?>
 
     <form method="POST">
