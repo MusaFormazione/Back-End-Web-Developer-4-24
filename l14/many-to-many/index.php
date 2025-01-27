@@ -12,13 +12,20 @@
     <?php
 
         $sql = "SELECT
-            ordini.id as id_ordine,  
-            utenti.id, utenti.nome, utenti.cognome, utenti.email,
+            ordini.id AS order_id,
+            utenti.nome AS nome_utente,
+            prodotti.nome AS nome_prodotto,
+            ordini_prodotti.quantity,
+            prodotti.prezzo,
             ordini.data
-        FROM 
-            ordini
-        RIGHT JOIN
-            utenti ON utenti.id = ordini.user_id
+        FROM
+            utenti 
+        INNER JOIN
+            ordini ON utenti.id = ordini.user_id
+        INNER JOIN
+            ordini_prodotti ON ordini.id = ordini_prodotti.order_id
+        INNER JOIN
+            prodotti ON prodotti.id = ordini_prodotti.product_id
         ";
 
         $query = $db->query($sql);
@@ -50,32 +57,47 @@
         <?php endforeach; ?>
     </tbody>
 </table>
-
+    
+<h1>Ordine n°4</h1>
 <?php
-$luisaID = 3;
-$ordiniLuisa = array_filter($ordini, function($ordine){ 
-    global $luisaID;
-    return $luisaID === $ordine['id'];
-});
+
+    $ordine4 = array_filter($ordini, function($ordine){
+        return $ordine['order_id'] === 4;
+    });
+
+    // var_dump($ordine4);
+
 ?>
 
-<h1>Ordini di Luisa Verdi</h1>
 <table class="table">
     <thead>
         <tr>
-            <th>#</th>
-            <th>data</th>
+            <th>nome prodotto</th>
+            <th>quantità</th>
+            <th>totale</th>
         </tr>
     </thead>
     <tbody>
-        <?php foreach($ordiniLuisa as $ordine): ?>
+        <?php 
+        
+        $total = array_reduce($ordine4, function($acc, $el){
+            return $acc + ($el['prezzo'] * $el['quantity']);
+        },0);
+
+        foreach($ordine4 as $prodotto):
+            $subTotal = $prodotto['quantity'] * $prodotto['prezzo'];
+            ?>
             <tr>
-                <td><?=$ordine['id_ordine']?></td>
-                <td><?=$ordine['data']?></td>
+                <td><?=$prodotto['nome_prodotto']?></td>
+                <td>x <?=$prodotto['quantity']?></td>
+                <td><?=$subTotal?>€</td>
             </tr>
-        <?php endforeach; ?>
+        <?php endforeach;?>
     </tbody>
+    <tfoot>
+        <td colspan="2"><b>Totale ordine:</b></td>
+        <td><?=$total?>€</td>
+    </tfoot>
 </table>
-    
 </body>
 </html>
