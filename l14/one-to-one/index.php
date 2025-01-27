@@ -53,5 +53,7 @@
         </tbody>
     </table>
 
+    <a href="esempio-select.php">Vai all'altro esempio </a>
+
 </body>
 </html>
