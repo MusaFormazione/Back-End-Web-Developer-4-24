@@ -20,8 +20,9 @@ function leggiCartella($directory){
             echo "<b>File: </b> ";
         }
 
+        
         echo "<a href=\"$itemPath\">$item</a>";
-
+        
         echo "</li>";
     }
     echo "</ul>";
@@ -34,3 +35,4 @@ echo "<h1>cartella aggiornare-files:</h1>";
 leggiCartella(__DIR__.'/aggiornare-files');
 
 
+var_dump($_SERVER);

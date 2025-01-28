@@ -29,3 +29,4 @@ function leggiCartellaAdOggetti($directory){
 }
 
 leggiCartellaAdOggetti(__DIR__);
+
