@@ -26,11 +26,14 @@
             ordini_prodotti ON ordini.id = ordini_prodotti.order_id
         INNER JOIN
             prodotti ON prodotti.id = ordini_prodotti.product_id
+        WHERE utenti.id = 3
         ";
 
         $query = $db->query($sql);
 
         $ordini = $query?->fetchAll(PDO::FETCH_ASSOC);
+
+        var_dump($query->errorInfo());
 
         if(!$ordini) die;
 
