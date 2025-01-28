@@ -1,7 +1,9 @@
 <?php
 
 //Prima di creare la cartella controlla se questa esista, perché altrimenti ricevi errore
-//mkdir('copy');
+if(!is_dir('copy')){
+    mkdir('copy');
+}
 
 $fileOriginale = 'file-da-copiare.txt';
 $fileDestinazione = 'copy/file-copiato.txt';
