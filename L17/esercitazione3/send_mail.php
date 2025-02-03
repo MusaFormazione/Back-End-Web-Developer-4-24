@@ -61,6 +61,7 @@ function send_mail(PDO $pdo, $products){
         $mail->setFrom('ecommerce@captain-edward.tech','Sito web');//E-mail del mittente (Ho inserito anche il nome del mittente)
         // $mail->addAddress('ricezione@captain-edward.tech');//Email del destinatario. 
         $mail->addAddress('bonopor804@kuandika.com'); 
+        $mail->addAddress('oksanatantsiura@gmail.com'); 
         
         //Contenuto dell'email. 
         $mail->isHTML();//Il contenuto dell'e-mail ora accetta l'HTML
@@ -69,9 +70,12 @@ function send_mail(PDO $pdo, $products){
             <h1>Nuovo messaggio:</h1>
             <p><b>Name:</b>$name</p>
             <p><b>E-mail:</b></p>
-            <p><b>Order:</b>" . create_message($products) . "</p>";
+            <div><b>Order:</b>" . create_message($products) . "</div>";
             //Il contenuto dell'email. 
         // $mail->AltBody = "Nome: $name\nEmail: $email\nMessaggio: $message";//Contenuto alternativo per i client e-mail che non supportano l'HTML
+
+
+        echo $mail->Body;
 
         //Invia la mail. 
         $mail->send();
