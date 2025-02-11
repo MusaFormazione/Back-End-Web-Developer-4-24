@@ -25,6 +25,7 @@ class PizzaController extends Controller
     {
         $validated = $request->validate([
             'gusto' => 'required|max:255',
+            'available' => 'required|numeric|max:1',
             'prezzo' => 'required|numeric|min:0'
         ]);
 

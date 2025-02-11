@@ -4,6 +4,7 @@ use App\Http\Controllers\AuthController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PizzaController;
+use App\Http\Middleware\AvailablePizza;
 
 Route::get('/user', function (Request $request) {
     return $request->user();
@@ -11,6 +12,7 @@ Route::get('/user', function (Request $request) {
 
 //Questa è la rotta a cui fare le chiamate per poter accedere e ottenere un token, in modo da poter chiamare anche le rotte protette
 Route::post('/login', [AuthController::class, 'login']);
+Route::post('/register', [AuthController::class, 'register']);
 
 /**
  * Rotte per CRUD pizze
@@ -32,4 +34,4 @@ Route::middleware('auth:sanctum')->group(function(){
 //Poniamoci nella situazione in cui si voglia permettere di mostrare le pizze in aree pubbliche
 //Ad esempio, abbiamo bisogno di creare una pagina menu per il ristorante, le pizze dovranno essere visibili al pubblico in modo che il frontend possa mostrarle anche agli utenti che sono loggati. Di conseguenza escludo i questi due metodi get dalla protezione
 Route::get('/pizza', [PizzaController::class,'index']);//pubblico
-Route::get('/pizza/{id}', [PizzaController::class,'show']);//pubblico
+Route::get('/pizza/{id}', [PizzaController::class,'show'])->middleware(AvailablePizza::class);//pubblico

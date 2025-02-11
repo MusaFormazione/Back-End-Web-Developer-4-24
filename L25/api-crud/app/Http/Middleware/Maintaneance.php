@@ -16,7 +16,7 @@ class Maintaneance
     public function handle(Request $request, Closure $next): Response
     {
 
-        if(now()->hour > 9 || now()->hour < 18 ){
+        if(now()->hour < 9 || now()->hour > 22 ){
             return response()->json(['error' => 'Sito in manutenzione'], 403);
         }
 
