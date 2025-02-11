@@ -1,13 +1,14 @@
 import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
 import Home from './components/Home';
 import Login from './components/Login';
+import Register from './components/Register';
 import Dashboard from './components/Dashboard';
 import LogoutBtn from './components/LogoutBtn';
 import './App.css'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { useEffect, useState } from 'react';
 import { isUserLoggedIn } from './utils/AuthHelper';
-import AuthGuard from './components/AuthGuard';
+// import AuthGuard from './components/AuthGuard';
 
 function App() {
 //Preparo uno Stato che mi aiuterà a nascondere o mostrare elementi in base al fatto che l'utente sia loggato o meno 
@@ -35,9 +36,17 @@ function App() {
               <li className="nav-item">
                 <Link className="nav-link active" aria-current="page" to="/">Home</Link>
               </li>
-               {!isLoggedIn && <li className="nav-item">
+               {!isLoggedIn && <>
+                
+                <li className="nav-item">
                   <Link className="nav-link" to="/login">Login</Link>
-                </li>}
+                </li>
+
+                <li className="nav-item">
+                  <Link className="nav-link" to="/register">Register</Link>
+                </li>
+                
+                </>}
               {isLoggedIn && <li className="nav-item">
                   <Link className="nav-link" to="/dashboard">Dashboard</Link>
                 </li>
@@ -51,6 +60,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Home/>}>Home</Route>
           <Route path="/login" element={<Login stateCallback={setIsLoggedIn}/>}>Login</Route>
+          <Route path="/register" element={<Register/>}>Login</Route>
           <Route path="/dashboard" element={<Dashboard/>}>Dashboard</Route>
         </Routes>
 

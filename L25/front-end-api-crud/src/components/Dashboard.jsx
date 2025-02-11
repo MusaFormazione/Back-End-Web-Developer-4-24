@@ -4,6 +4,7 @@ const Dashboard = () => {
 
   const [form, setForm] =  useState({
     gusto:'',
+    available: 0,
     prezzo:0
   });
 
@@ -14,6 +15,18 @@ const Dashboard = () => {
       return  { 
         ...form,
         [name]: value
+      }
+    });
+
+  }
+
+  const handleChangeAvailability = (e) =>{
+    const {name, value} = e.target;
+
+    setForm(form =>{
+      return  { 
+        ...form,
+        [name]: Number(value)
       }
     });
 
@@ -41,6 +54,10 @@ const Dashboard = () => {
       <form onSubmit={handleSubmit}>
            <input type="text" name="gusto" onChange={handleChange} placeholder="Gusto" className="form-control" />
            <input type="number" name="prezzo" onChange={handleChange} placeholder="Prezzo" className="form-control" />
+           <select name="available" onChange={handleChangeAvailability} className="form-control">
+              <option value={0}>Disponibile</option>
+              <option value={1}>Non disponibile</option>
+           </select>
            <button className="btn btn-primary">Crea</button>
       </form>
 
